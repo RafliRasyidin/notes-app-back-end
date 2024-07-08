@@ -1,3 +1,5 @@
 node_modules
 notes-apl-webserver.pem
 rasyidin_credentials.csv
+.env
+.prod.env
