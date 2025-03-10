@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
-const { bcrypt } = require('bcrypt');
+const bcrypt = require('bcrypt');
 const InvariantError = require('../../exceptions/InvariantError');
 const NotFoundError = require('../../exceptions/NotFoundError');
 
@@ -38,13 +38,13 @@ class UserService {
     const result = await this._pool.query(query);
 
     if (result.rows.length > 0) {
-      throw new InvariantError('Gagal menambahkan user. Username sudah digunakan');
+      throw new InvariantError('Gagal menambahkan user. Username sudah digunakan.');
     }
   }
 
   async getUserById(userId) {
     const query = {
-      text: 'SELECT id, username,, fullname FROM users WHERE id = $1',
+      text: 'SELECT id, username, fullname FROM users WHERE id = $1',
       values: [userId],
     };
 
