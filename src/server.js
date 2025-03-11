@@ -115,6 +115,15 @@ const init = async () => {
     }
 
     if (response instanceof Error) {
+      if (response.message.includes('Missing authentication')) {
+        const newResponse = h.response({
+          status: 'Unauthorized',
+          message: 'Missing Authentications',
+        });
+        newResponse.code(401);
+        return newResponse;
+      }
+
       const newResponse = h.response({
         status: 'error',
         message: 'Maaf, terjadi kegagalan pada server kami.',
