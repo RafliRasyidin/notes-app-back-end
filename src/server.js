@@ -99,6 +99,15 @@ const init = async () => {
       return newResponse;
     }
 
+    if (response instanceof Error) {
+      const newResponse = h.response({
+        status: 'error',
+        message: 'Maaf, terjadi kegagalan pada server kami.',
+      });
+      newResponse.code(500);
+      return newResponse;
+    }
+
     return h.continue;
   });
 
