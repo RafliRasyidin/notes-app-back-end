@@ -27,10 +27,10 @@ const CollaborationsValidator = require('./validator/collaborations');
 const ClientError = require('./exceptions/ClientError');
 
 const init = async () => {
-  const notesService = new NotesService();
+  const collaborationService = new CollaborationsService();
+  const notesService = new NotesService(collaborationService);
   const usersService = new UserService();
   const authenticationsService = new AuthenticationsService();
-  const collaborationService = new CollaborationsService();
 
   const server = Hapi.server({
     port: process.env.PORT,
