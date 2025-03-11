@@ -6,6 +6,7 @@ class UsersHandler {
 
     this.postUserHandler = this.postUserHandler.bind(this);
     this.getUserByIdHandler = this.getUserByIdHandler.bind(this);
+    this.getUsersByUsernameHandler = this.getUsersByUsernameHandler.bind(this);
   }
 
   async postUserHandler(request, h) {
@@ -21,6 +22,18 @@ class UsersHandler {
       },
     });
     response.code(201);
+    return response;
+  }
+
+  async getUsersByUsernameHandler(request, h) {
+    const { username = '' } = request.query;
+    const users = await this._service.getUsersByUsername(username.toLowerCase());
+    const response = h.response({
+      status: 'success',
+      data: {
+        users,
+      },
+    });
     return response;
   }
 
